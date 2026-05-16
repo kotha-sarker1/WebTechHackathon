@@ -1,3 +1,14 @@
+function escapeHtml(str){
+    if(str == null || str == undefined) return "";
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
 function filterJobs(){
     const category_id    = document.getElementById('filterCategory').value;
     const job_type       = document.getElementById('filterType').value;
@@ -73,7 +84,7 @@ function toggleSaveJob(jobId){
     xhttp.open('post', '../Controller/jobController.php', true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send('action=toggleSaveJob&job_id=' + jobId);
-    
+
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             const response = JSON.parse(this.responseText);
