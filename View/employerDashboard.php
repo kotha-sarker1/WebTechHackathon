@@ -10,7 +10,7 @@ $connection = $db->openConnection();
 
 $employer_id = 1;
 
-$jobs = $db->getEmployerJobs($connection, "jobs", $employer_id);
+$jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
 
 ?>
 
@@ -34,7 +34,7 @@ $jobs = $db->getEmployerJobs($connection, "jobs", $employer_id);
 
     <br><br>
 
-    <table border="1">
+    <table border="1" cellpadding="10">
 
         <tr>
 
@@ -44,13 +44,11 @@ $jobs = $db->getEmployerJobs($connection, "jobs", $employer_id);
 
             <th>Category</th>
 
-            <th>Location</th>
+            <th>Deadline</th>
 
-            <th>Job Type</th>
+            <th>Application Count</th>
 
             <th>Status</th>
-
-            <th>Deadline</th>
 
             <th>Action</th>
 
@@ -66,35 +64,65 @@ $jobs = $db->getEmployerJobs($connection, "jobs", $employer_id);
 
             $category = $row["category_name"];
 
-            $location = $row["location"];
+            $deadline = $row["deadline"];
 
-            $job_type = $row["job_type"];
+            $applicationCount = $row["total_applications"];
 
             $status = $row["status"];
 
-            $deadline = $row["deadline"];
-
-            echo "
+            ?>
 
             <tr>
 
-                <td>$id</td>
+                <td><?php echo $id; ?></td>
 
-                <td>$title</td>
+                <td><?php echo $title; ?></td>
 
-                <td>$category</td>
+                <td><?php echo $category; ?></td>
 
-                <td>$location</td>
+                <td><?php echo $deadline; ?></td>
 
-                <td>$job_type</td>
-
-                <td>$status</td>
-
-                <td>$deadline</td>
+                <td><?php echo $applicationCount; ?></td>
 
                 <td>
 
-                    <a href='../Controller/DeleteJob.php?id=$id'>
+                    <button
+
+                    id="statusBtn<?php echo $id; ?>"
+
+                    onclick="toggleStatus(<?php echo $id; ?>)"
+
+                    style="color:white;
+
+                    background-color:
+
+                    <?php
+
+                    if($status == "active"){
+
+                        echo "green";
+
+                    }else{
+
+                        echo "red";
+
+                    }
+
+                    ?>
+
+                    ;"
+
+                    >
+
+                    <?php echo $status; ?>
+
+                    </button>
+
+                </td>
+
+                <td>
+
+                    <a href="../Controller/DeleteJob.php?id=<?php echo $id; ?>">
 
                         Delete
 
@@ -104,13 +132,15 @@ $jobs = $db->getEmployerJobs($connection, "jobs", $employer_id);
 
             </tr>
 
-            ";
+            <?php
 
         }
 
         ?>
 
     </table>
+
+    <script src="../JS/toggleStatus.js"></script>
 
 </body>
 

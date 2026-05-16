@@ -104,6 +104,60 @@ class DatabaseConnection{
 
     }
 
+    function getEmployerJobsWithApplicationCount($connection, $employer_id){
+
+    $sql = "SELECT jobs.*,
+    
+    categories.name as category_name,
+
+    COUNT(applications.id) as total_applications
+
+    FROM jobs
+
+    JOIN categories
+
+    ON jobs.category_id = categories.id
+
+    LEFT JOIN applications
+
+    ON jobs.id = applications.job_id
+
+    WHERE jobs.employer_id = $employer_id
+
+    GROUP BY jobs.id";
+
+    $result = $connection->query($sql);
+
+    return $result;
+    }
+
+    function toggleJobStatus($connection, $id){
+
+    $checkSql = "SELECT status FROM jobs WHERE id = $id";
+
+    $checkResult = $connection->query($checkSql);
+
+    $row = $checkResult->fetch_assoc();
+
+    $currentStatus = $row["status"];
+
+    if($currentStatus == "active"){
+
+        $newStatus = "closed";
+
+    }else{
+
+        $newStatus = "active";
+
+    }
+
+    $sql = "UPDATE jobs SET status = '$newStatus' WHERE id = $id";
+
+    $result = $connection->query($sql);
+
+    return $newStatus;
+    }
+
 }
 
 ?>
