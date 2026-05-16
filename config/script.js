@@ -65,3 +65,30 @@ function renderJobCards(jobs){
     });
     container.innerHTML = html;
 }
+function toggleSaveJob(jobId){
+    const heart = document.getElementById('heartBtn_' + jobId);
+    const xhttp = new XMLHttpRequest();
+
+
+    xhttp.open('post', '../Controller/jobController.php', true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send('action=toggleSaveJob&job_id=' + jobId);
+    
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            const response = JSON.parse(this.responseText);
+
+            if(response.success){
+                if(response.saved){
+                    heart.innerHTML   = "&#9829;";
+                    heart.style.color = "red";
+                }else{
+                    heart.innerHTML   = "&#9825;";
+                    heart.style.color = "#aaa";
+                }
+            }
+        }
+    }
+
+    
+}
