@@ -1,6 +1,6 @@
 <?php
 
-include "../Model/DatabaseConnection.php";
+include "../models/DatabaseConnection.php";
 
 session_start();
 
@@ -21,7 +21,7 @@ if(!$category_name){
 
 if($hasError){
 
-    Header("Location: ../View/categoryDashboard.php");
+    Header("Location: ../views/categoryDashboard.php");
 
 }else{
 
@@ -35,7 +35,7 @@ if($hasError){
 
         $_SESSION["successMsg"] = "Category Added Successfully";
 
-        Header("Location: ../View/categoryDashboard.php");
+        Header("Location: ../views/categoryDashboard.php");
 
     }
 

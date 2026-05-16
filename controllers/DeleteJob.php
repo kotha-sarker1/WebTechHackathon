@@ -1,6 +1,6 @@
 <?php
 
-include "../Model/DatabaseConnection.php";
+include "../models/DatabaseConnection.php";
 
 $id = $_GET["id"];
 
@@ -12,7 +12,7 @@ $result = $db->deleteJob($connection, "jobs", $id);
 
 if($result){
 
-    Header("Location: ../View/employerDashboard.php");
+    Header("Location: ../views/employerDashboard.php");
 
 }
 

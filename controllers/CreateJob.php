@@ -1,6 +1,6 @@
 <?php
 
-include "../Model/DatabaseConnection.php";
+include "../models/DatabaseConnection.php";
 
 session_start();
 
@@ -36,7 +36,7 @@ if(!$title){
 
 if($hasError){
 
-    Header("Location: ../View/createJob.php");
+    Header("Location: ../views/createJob.php");
 
 }else{
 
@@ -66,7 +66,7 @@ if($hasError){
 
         $_SESSION["successMsg"] = "Job Created Successfully";
 
-        Header("Location: ../View/createJob.php");
+        Header("Location: ../views/createJob.php");
 
     }
 

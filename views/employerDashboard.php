@@ -1,6 +1,6 @@
 <?php
 
-include "../Model/DatabaseConnection.php";
+include "../models/DatabaseConnection.php";
 
 session_start();
 
@@ -122,7 +122,7 @@ $jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
 
                 <td>
 
-                    <a href="../Controller/DeleteJob.php?id=<?php echo $id; ?>">
+                    <a href="../controllers/DeleteJob.php?id=<?php echo $id; ?>">
 
                         Delete
 
@@ -140,7 +140,7 @@ $jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
 
     </table>
 
-    <script src="../JS/toggleStatus.js"></script>
+    <script src="../config/toggleStatus.js"></script>
 
 </body>
 

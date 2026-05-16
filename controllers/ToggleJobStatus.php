@@ -1,6 +1,6 @@
 <?php
 
-include "../Model/DatabaseConnection.php";
+include "../models/DatabaseConnection.php";
 
 $id = $_POST["id"];
 

@@ -1,6 +1,6 @@
 <?php
 
-include "../Model/DatabaseConnection.php";
+include "../models/DatabaseConnection.php";
 
 session_start();
 
@@ -31,7 +31,7 @@ $categories = $db->getAllCategories($connection, "categories");
 
     <h1>Create Job</h1>
 
-    <form method="post" action="../Controller/CreateJob.php">
+    <form method="post" action="../controllers/CreateJob.php">
 
         <table>
 

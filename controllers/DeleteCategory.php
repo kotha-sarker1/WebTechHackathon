@@ -1,6 +1,6 @@
 <?php
 
-include "../Model/DatabaseConnection.php";
+include "../models/DatabaseConnection.php";
 
 session_start();
 
@@ -16,7 +16,7 @@ if($check->num_rows > 0){
 
     $_SESSION["deleteErr"] = "Cannot Delete. Jobs Exist Under This Category";
 
-    Header("Location: ../View/categoryDashboard.php");
+    Header("Location: ../views/categoryDashboard.php");
 
 }else{
 
@@ -26,7 +26,7 @@ if($check->num_rows > 0){
 
         $_SESSION["successMsg"] = "Category Deleted Successfully";
 
-        Header("Location: ../View/categoryDashboard.php");
+        Header("Location: ../views/categoryDashboard.php");
 
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-include "../Model/DatabaseConnection.php";
+include "../models/DatabaseConnection.php";
 
 session_start();
 
@@ -30,9 +30,9 @@ $categories = $db->getAllCategories($connection, "categories");
 
 <body>
 
-    <h1>Admin Category Dashboard</h1>
+    <h1 style = "color:blue">Admin Category Dashboard</h1>
 
-    <form method="post" action="../Controller/CreateCategory.php">
+    <form method="post" action="../controllers/CreateCategory.php">
 
         <table>
 
@@ -101,7 +101,7 @@ $categories = $db->getAllCategories($connection, "categories");
 
                 <td>
 
-                    <a href='../Controller/DeleteCategory.php?id=$id'>
+                    <a href='../controllers/DeleteCategory.php?id=$id'>
                         Delete
                     </a>
 
