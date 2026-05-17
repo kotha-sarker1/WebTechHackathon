@@ -30,7 +30,7 @@ $categories = $db->getAllCategories($connection, "categories");
 
 <body>
 
-    <h1 style = "color:blue">Admin Category Dashboard</h1>
+    <h1 style = "color:Purple">Admin Category Dashboard</h1>
 
     <form method="post" action="../controllers/CreateCategory.php">
 

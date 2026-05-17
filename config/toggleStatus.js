@@ -2,7 +2,7 @@ function toggleStatus(id){
 
     var xhttp = new XMLHttpRequest();
 
-    xhttp.open("POST", "../Controller/ToggleJobStatus.php", true);
+    xhttp.open("POST", "../controllers/ToggleJobStatus.php", true);
 
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 

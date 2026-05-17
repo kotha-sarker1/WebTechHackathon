@@ -24,7 +24,7 @@ $jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
 
 <body>
 
-    <h1>Employer Dashboard</h1>
+    <h1 style="color:Blue">Employer Dashboard</h1>
 
     <a href="createJob.php">
 

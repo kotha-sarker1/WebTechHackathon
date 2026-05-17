@@ -41,7 +41,7 @@ $categories = $db->getAllCategories($connection, "categories");
 
                 <td>
 
-                    <input type="text" name="title" placeholder="Enter Job Title"/>
+                    <input type="text" name="title" placeholder="Enter Job Title" />
 
                 </td>
 
@@ -91,7 +91,7 @@ $categories = $db->getAllCategories($connection, "categories");
 
                 <td>
 
-                    <textarea name="description"></textarea>
+                    <textarea name="description" required></textarea>
 
                 </td>
 
@@ -103,7 +103,7 @@ $categories = $db->getAllCategories($connection, "categories");
 
                 <td>
 
-                    <textarea name="requirements"></textarea>
+                    <textarea name="requirements" required></textarea>
 
                 </td>
 
