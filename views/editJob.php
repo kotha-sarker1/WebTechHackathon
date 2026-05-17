@@ -27,12 +27,15 @@ unset($_SESSION["titleErr"]);
 <head>
 
     <title>Edit Job</title>
+    <link rel="stylesheet" href="../config/style.css">
 
 </head>
 
 <body>
 
-    <h1>Edit Job</h1>
+<div class="form-container">
+
+    <h1 class="main-heading">Edit Job</h1>
 
     <form method="post" action="../controllers/EditJob.php">
 
@@ -56,7 +59,7 @@ unset($_SESSION["titleErr"]);
 
                 <td>
 
-                    <p style="color:red;">
+                    <p class="error">
 
                         <?php echo $titleError; ?>
 
@@ -273,6 +276,7 @@ unset($_SESSION["titleErr"]);
         </table>
 
     </form>
+</div>
 
 </body>
 

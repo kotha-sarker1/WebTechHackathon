@@ -24,12 +24,13 @@ $categories = $db->getAllCategories($connection, "categories");
 <head>
 
     <title>Create Job</title>
+    <link rel="stylesheet" href="../config/style.css">
 
 </head>
 
 <body>
-
-    <h1>Create Job</h1>
+<div class="form-container">
+    <h1 class="main-heading" >Create Job</h1>
 
     <form method="post" action="../controllers/CreateJob.php">
 
@@ -47,7 +48,7 @@ $categories = $db->getAllCategories($connection, "categories");
 
                 <td>
 
-                    <p style="color:red;">
+                    <p class="error">
 
                         <?php echo $titleError; ?>
 
@@ -176,14 +177,13 @@ $categories = $db->getAllCategories($connection, "categories");
         </table>
 
     </form>
+</div>
 
-    <p style="color:green;">
+    <p class="success">
 
         <?php echo $successMsg; ?>
 
     </p>
-
-    <br>
 
     <a href="employerDashboard.php">
 

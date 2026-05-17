@@ -1,0 +1,141 @@
+/* PAGE BACKGROUND */
+body{
+    background-color: #e7eae0;
+    font-family: Arial, sans-serif;
+}
+
+/* FORM BOX */
+.form-container{
+    width: 600px;
+    margin: 50px auto;
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+
+    border: 1px solid #ddd;
+}
+
+/* HEADING */
+.main-heading{
+    text-align: center;
+    color: #0f2593;
+    margin-bottom: 25px;
+    font-size: 36px;
+}
+
+h2{
+    text-align: center;
+    color: #0f2593;
+    font-size: 25px;
+}
+
+
+
+table.all-catagory {
+    width: 80%;
+    margin: 40px auto;
+    border-collapse: collapse;
+    border: 2px solid #141313; /* This keeps borders clean and single-lined */
+}
+
+
+table.all-catagory th {
+    border-collapse: collapse;
+    text-align: center;
+    border: 1px solid #141313; /* This keeps borders clean and single-lined */
+}
+
+table.all-catagory td {
+    border-collapse: collapse;
+    text-align: center;
+    border: 1px solid #141313;
+    vertical-align: middle; /* This keeps borders clean and single-lined */
+}
+
+
+
+/* INPUT FIELDS */
+input[type="text"],
+input[type="date"],
+input[type="password"],
+input[type="email"],
+select,
+textarea{
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    box-sizing: border-box;
+}
+
+/* INPUT FOCUS EFFECT */
+input:focus,
+textarea:focus,
+select:focus{
+
+    border-color: #2bb67a;
+
+    box-shadow: 0px 0px 5px #2be293;
+}
+
+/* TEXTAREA */
+textarea{
+    height: 50px;
+    resize: none;
+}
+
+/* BUTTON */
+input[type="submit"]{
+
+    width: 100%;
+
+    background-color: #2be293;
+
+    color: white;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+/* BUTTON HOVER */
+input[type="submit"]:hover{
+    background-color: #76dc8c;
+}
+
+/* LABEL STYLE */
+td:first-child{
+    font-weight: bold;
+    color: #333;
+}
+
+/* ERROR */
+.error{
+    color: red;
+    font-size: 14px;
+}
+
+/* SUCCESS */
+.success{
+    color: green;
+    text-align: center;
+}

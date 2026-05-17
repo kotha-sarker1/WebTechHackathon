@@ -26,11 +26,14 @@ $categories = $db->getAllCategories($connection, "categories");
 
 <head>
     <title>Category Dashboard</title>
+    <link rel="stylesheet" href="../config/style2.css">
 </head>
 
 <body>
 
-    <h1 style = "color:Purple">Admin Category Dashboard</h1>
+<div class="form-container">
+
+    <h1 class="main-heading">Admin Category Dashboard</h1>
 
     <form method="post" action="../controllers/CreateCategory.php">
 
@@ -62,24 +65,25 @@ $categories = $db->getAllCategories($connection, "categories");
         </table>
 
     </form>
+</div>
 
-    <p style="color:green;">
+    <p class="success">
         <?php echo $successMsg; ?>
     </p>
 
-    <p style="color:red;">
+    <p class="error">
         <?php echo $deleteErr; ?>
     </p>
 
     <h2>All Categories</h2>
 
-    <table border="1">
+    <table class="all-catagory">
 
         <tr>
 
-            <th>ID</th>
+            <th >ID</th>
             <th>Category Name</th>
-            <th>Action</th>
+            <th >Action</th>
 
         </tr>
 
@@ -93,13 +97,13 @@ $categories = $db->getAllCategories($connection, "categories");
 
             echo "
             
-            <tr>
+            <tr >
 
-                <td>$id</td>
+                <td >$id</td>
 
-                <td>$name</td>
+                <td >$name</td>
 
-                <td>
+                <td >
                     
                     <a href='editCategory.php?id=$id'>
                         Edit
