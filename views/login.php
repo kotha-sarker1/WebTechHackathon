@@ -1,6 +1,6 @@
 <?php
-    require_once('../models/db.php');
     session_start();
+    require_once('../models/db.php');
 
     // If already logged in, redirect to job board
     if(isset($_SESSION["isLoggedIn"]) && $_SESSION["isLoggedIn"] === true){
@@ -32,7 +32,6 @@
                     $_SESSION["role"]       = $user['role'];
                     $_SESSION["file_path"]  = $user['file_path'] ?? "";
 
-                    // Redirect based on role
                     if($user['role'] === 'seeker'){
                         header('location: job_board.php');
                     } else if($user['role'] === 'employer'){
@@ -50,7 +49,6 @@
         }
     }
 ?>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Login - Job Portal</title>

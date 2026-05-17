@@ -11,12 +11,11 @@ function escapeHtml(str){
 }
 
 function searchJobs(){
-    const keyword = document.getElementById('search_keyword').value;
+    const keyword = document.getElementById('searchKeyword').value;
     const xhttp   = new XMLHttpRequest();
 
     xhttp.open('post', '../controllers/jobController.php', true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send('action=searchJobs&keyword=' + encodeURIComponent(keyword));
 
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
@@ -25,19 +24,19 @@ function searchJobs(){
         }
     }
 
-    
+    xhttp.send('action=searchJobs&keyword=' + keyword);
 }
 
 function filterJobs(){
-    const category_id    = document.getElementById('filter_category').value;
-    const job_type       = document.getElementById('filter_type').value;
-    const location       = document.getElementById('filter_location').value;
-    const salary_keyword = document.getElementById('filter_salary').value;
+    const category_id    = document.getElementById('filterCategory').value;
+    const job_type       = document.getElementById('filterType').value;
+    const location       = document.getElementById('filterLocation').value;
+    const salary_keyword = document.getElementById('filterSalary').value;
     const xhttp          = new XMLHttpRequest();
 
     xhttp.open('post', '../controllers/jobController.php', true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send('action=filterJobs&category_id=' + encodeURIComponent(category_id) + '&job_type=' + encodeURIComponent(job_type) + '&location=' + encodeURIComponent(location) + '&salary_keyword=' + encodeURIComponent(salary_keyword));
+
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             const jobs = JSON.parse(this.responseText);
@@ -45,11 +44,11 @@ function filterJobs(){
         }
     }
 
-    
+    xhttp.send('action=filterJobs&category_id=' + category_id + '&job_type=' + job_type + '&location=' + location + '&salary_keyword=' + salary_keyword);
 }
 
 function renderJobCards(jobs){
-    const container = document.getElementById('jobs_container');
+    const container = document.getElementById('listWrap');
 
     if(jobs.length == 0){
         container.innerHTML = "<p>No jobs found.</p>";
@@ -59,35 +58,34 @@ function renderJobCards(jobs){
     let html = "";
 
     jobs.forEach(function(job){
-        const is_saved    = job.is_saved == "yes";
-        const heart_color = is_saved ? "red" : "#aaa";
-        const heart_icon  = is_saved ? "&#9829;" : "&#9825;";
+        const isSaved    = job.is_saved == "yes";
+        const heartColor = isSaved ? "red" : "#aaa";
+        const heartIcon  = isSaved ? "&#9829;" : "&#9825;";
 
-        html += "<div class='job-card'>";
-        html += "<div class='job-card-top'>";
-        html += "<div class='job-card-info'>";
+        html += "<div class='jcard'>";
+        html += "<div class='jcard-head'>";
+        html += "<div class='jcard-body'>";
         html += "<h3>" + escapeHtml(job.title) + "</h3>";
-        html += "<div class='company'>" + escapeHtml(job.company_name) + "</div>";
-        html += "<div class='meta'>" + escapeHtml(job.category_name) + " &nbsp;|&nbsp; " + escapeHtml(job.location) + " &nbsp;|&nbsp; " + escapeHtml(job.job_type) + "<br>Salary: " + escapeHtml(job.salary_range) + " &nbsp;|&nbsp; Deadline: " + escapeHtml(job.deadline) + "</div>";
+        html += "<div class='cname'>" + escapeHtml(job.cname_name) + "</div>";
+        html += "<div class='jmeta'>" + escapeHtml(job.category_name) + " &nbsp;|&nbsp; " + escapeHtml(job.location) + " &nbsp;|&nbsp; " + escapeHtml(job.job_type) + "<br>Salary: " + escapeHtml(job.salary_range) + " &nbsp;|&nbsp; Deadline: " + escapeHtml(job.deadline) + "</div>";
         html += "</div>";
-        html += "<button class='heart-btn' id='heart_btn_" + job.id + "' onclick='toggleSaveJob(" + job.id + ")' style='color:" + heart_color + ";'>" + heart_icon + "</button>";
+        html += "<button class='savebtn' id='sbtn_" + job.id + "' onclick='toggleSaveJob(" + job.id + ")' style='color:" + heartColor + ";'>" + heartIcon + "</button>";
         html += "</div>";
-        html += "<div class='job-card-footer'>";
-        html += "<a class='btn-view' href='job_detail.php?id=" + job.id + "'>View Details</a>";
+        html += "<div class='jcard-foot'>";
+        html += "<a class='viewlink' href='job_detail.php?id=" + job.id + "'>View Details</a>";
         html += "</div></div>";
     });
 
     container.innerHTML = html;
 }
 
-function toggleSaveJob(job_id){
-    const heart = document.getElementById('heart_btn_' + job_id);
+function toggleSaveJob(jobId){
+    const heart = document.getElementById('sbtn_' + jobId);
     const xhttp = new XMLHttpRequest();
 
     xhttp.open('post', '../controllers/jobController.php', true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send('action=toggleSaveJob&job_id=' + job_id);
-    
+
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
             const response = JSON.parse(this.responseText);
@@ -104,5 +102,5 @@ function toggleSaveJob(job_id){
         }
     }
 
-    xhttp.send('action=toggleSaveJob&job_id=' + job_id);
+    xhttp.send('action=toggleSaveJob&job_id=' + jobId);
 }

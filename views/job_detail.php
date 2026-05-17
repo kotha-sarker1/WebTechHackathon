@@ -2,6 +2,9 @@
     require_once('../models/jobModel.php');
     session_start();
 
+    $isLoggedIn = $_SESSION["isLoggedIn"] ?? false;
+    if(!$isLoggedIn){ header('location: login.php'); exit(); }
+
     $role      = $_SESSION["role"]      ?? "";
     $user_id   = $_SESSION["user_id"]   ?? "";
     $name      = $_SESSION["name"]      ?? "";
@@ -31,24 +34,24 @@
 </head>
 <body>
 
-    <div class="nav-bar">
+    <div class="topnav">
         <a href="job_board.php">Job Board</a>
         <a href="saved_jobs.php">Saved Jobs</a>
         <a href="my_applications.php">My Applications</a>
         <a href="profile_seeker.php">Profile</a>
         <a href="../controllers/logout.php">Logout</a>
-        <span class="nav-greeting">Hello, <?php echo htmlspecialchars($name); ?> (Seeker)</span>
+        <span class="greet-text">Hello, <?php echo htmlspecialchars($name); ?> (Seeker)</span>
     </div>
 
-    <div class="page-wrapper">
+    <div class="main-wrap">
 
-        <a class="back-link" href="job_board.php">&larr; Back to Job Board</a>
+        <a class="go-back" href="job_board.php">&larr; Back to Job Board</a>
 
         <h2><?php echo htmlspecialchars($job['title']); ?></h2>
 
-        <div class="section-box">
-            <div class="section-title">Job Details</div>
-            <table class="detail-table">
+        <div class="info-box">
+            <div class="box-title">Job Details</div>
+            <table class="dtable">
                 <tr><td><strong>Company</strong></td><td><?php echo htmlspecialchars($job['company_name']); ?></td></tr>
                 <tr><td><strong>Industry</strong></td><td><?php echo htmlspecialchars($job['industry']); ?></td></tr>
                 <tr><td><strong>Category</strong></td><td><?php echo htmlspecialchars($job['category_name']); ?></td></tr>
@@ -64,15 +67,15 @@
 
         <br>
 
-        <div class="section-box">
-            <div class="section-title">Description</div>
+        <div class="info-box">
+            <div class="box-title">Description</div>
             <p><?php echo nl2br(htmlspecialchars($job['description'])); ?></p>
         </div>
 
         <br>
 
-        <div class="section-box">
-            <div class="section-title">Requirements</div>
+        <div class="info-box">
+            <div class="box-title">Requirements</div>
             <p><?php echo nl2br(htmlspecialchars($job['requirements'])); ?></p>
         </div>
 
@@ -80,36 +83,36 @@
 
         <?php if($role == "seeker"){ ?>
             <?php if($alreadyApplied){ ?>
-                <p class="msg-success"><strong>&#10003; You have already applied for this job.</strong></p>
+                <p class="ok-msg"><strong>&#10003; You have already applied for this job.</strong></p>
             <?php }else{ ?>
-                <div class="section-box">
-                    <div class="section-title">Apply Now</div>
+                <div class="info-box">
+                    <div class="box-title">Apply Now</div>
 
-                    <?php if($applyErr != ""){ echo "<p class='msg-error'>".htmlspecialchars($applyErr)."</p>"; } ?>
+                    <?php if($applyErr != ""){ echo "<p class='err-msg'>".htmlspecialchars($applyErr)."</p>"; } ?>
 
                     <form method="post" action="../controllers/jobController.php" enctype="multipart/form-data">
                         <input type="hidden" name="action" value="apply">
                         <input type="hidden" name="job_id" value="<?php echo $job_id; ?>">
 
-                        <div class="form-group">
+                        <div class="frow">
                             <label>Cover Letter:</label>
                             <textarea name="cover_letter" rows="6" placeholder="Write your cover letter..." style="width:100%;"></textarea>
-                            <?php if($coverLetterErr != ""){ echo "<span class='msg-error'>".$coverLetterErr."</span>"; } ?>
+                            <?php if($coverLetterErr != ""){ echo "<span class='err-msg'>".$coverLetterErr."</span>"; } ?>
                         </div>
 
                         <?php if($file_path != ""){ ?>
-                        <div class="form-group">
+                        <div class="frow">
                             <label><input type="radio" name="use_profile_resume" value="yes" checked> Use my profile resume</label><br>
                             <label><input type="radio" name="use_profile_resume" value="no"> Upload new resume</label>
                         </div>
                         <?php } ?>
 
-                        <div class="form-group">
+                        <div class="frow">
                             <label>Upload Resume (PDF, max 2MB):</label><br>
                             <input type="file" name="resume_upload" accept=".pdf">
                         </div>
 
-                        <div class="form-group" style="text-align:center;">
+                        <div class="frow" style="text-align:center;">
                             <input type="submit" value="Submit Application">
                         </div>
                     </form>

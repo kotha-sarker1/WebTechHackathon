@@ -10,7 +10,7 @@ body {
 }
 
 /* ── Navbar ── */
-.nav-bar {
+.topnav {
     background-color: #4a90e2;
     padding: 12px 24px;
     display: flex;
@@ -18,25 +18,25 @@ body {
     gap: 20px;
 }
 
-.nav-bar a {
+.topnav a {
     color: white;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
 }
 
-.nav-bar a:hover {
+.topnav a:hover {
     text-decoration: underline;
 }
 
-.nav-bar .nav-greeting {
+.topnav .greet-text {
     margin-left: auto;
     color: white;
     font-size: 14px;
 }
 
 /* ── Page wrapper ── */
-.page-wrapper {
+.main-wrap {
     max-width: 860px;
     margin: 30px auto;
     padding: 0 16px;
@@ -48,7 +48,7 @@ h2 {
 }
 
 /* ── Section boxes (replaces fieldset/legend) ── */
-.section-box {
+.info-box {
     border: 1px solid #ddd;
     border-radius: 8px;
     background: white;
@@ -56,7 +56,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-.section-title {
+.box-title {
     font-weight: bold;
     font-size: 15px;
     color: #333;
@@ -65,7 +65,7 @@ h2 {
     border-bottom: 1px solid #eee;
 }
 
-.filter-row {
+.filter-bar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -73,20 +73,20 @@ h2 {
     margin-top: 10px;
 }
 
-.filter-row label {
+.filter-bar label {
     font-size: 13px;
     color: #555;
     white-space: nowrap;
 }
 
 /* ── Job Cards ── */
-#jobsContainer {
+#listWrap {
     display: flex;
     flex-direction: column;
     gap: 14px;
 }
 
-.job-card {
+.jcard {
     background: white;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -95,35 +95,35 @@ h2 {
     cursor: default;
 }
 
-.job-card:hover {
+.jcard:hover {
     box-shadow: 0 4px 16px rgba(0,0,0,0.12);
     transform: translateY(-2px);
 }
 
-.job-card-top {
+.jcard-head {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
-.job-card-info h3 {
+.jcard-body h3 {
     margin: 0 0 4px 0;
     font-size: 16px;
     color: #222;
 }
 
-.job-card-info .company {
+.jcard-body .cname {
     font-size: 13px;
     color: #555;
     margin-bottom: 4px;
 }
 
-.job-card-info .meta {
+.jcard-body .jmeta {
     font-size: 13px;
     color: #777;
 }
 
-.heart-btn {
+.savebtn {
     font-size: 24px;
     cursor: pointer;
     background: none;
@@ -133,16 +133,16 @@ h2 {
     transition: transform 0.15s ease;
 }
 
-.heart-btn:hover {
+.savebtn:hover {
     transform: scale(1.25);
 }
 
-.job-card-footer {
+.jcard-foot {
     margin-top: 14px;
     text-align: center;
 }
 
-.btn-view {
+.viewlink {
     display: inline-block;
     background-color: #4a90e2;
     color: white;
@@ -154,7 +154,7 @@ h2 {
     transition: background-color 0.2s ease;
 }
 
-.btn-view:hover {
+.viewlink:hover {
     background-color: #357abd;
     color: white;
 }
@@ -214,17 +214,17 @@ td {
 }
 
 /* ── Back link ── */
-.back-link {
+.go-back {
     display: inline-block;
     margin-bottom: 14px;
     font-size: 13px;
     color: #4a90e2;
     text-decoration: none;
 }
-.back-link:hover { text-decoration: underline; }
+.go-back:hover { text-decoration: underline; }
 
 /* ── Messages ── */
-.msg-success {
+.ok-msg {
     color: #155724;
     background: #d4edda;
     border: 1px solid #c3e6cb;
@@ -232,7 +232,7 @@ td {
     border-radius: 4px;
     margin-bottom: 14px;
 }
-.msg-error {
+.err-msg {
     color: #721c24;
     background: #f8d7da;
     border: 1px solid #f5c6cb;
@@ -242,40 +242,40 @@ td {
 }
 
 /* ── Status badges ── */
-.badge {
+.stag {
     display: inline-block;
     padding: 3px 12px;
     border-radius: 12px;
     font-size: 12px;
     font-weight: 600;
 }
-.badge-submitted   { background:#cce5ff; color:#004085; }
-.badge-reviewed    { background:#fff3cd; color:#856404; }
-.badge-shortlisted { background:#d4edda; color:#155724; }
-.badge-rejected    { background:#f8d7da; color:#721c24; }
-.badge-default     { background:#eee;    color:#333;    }
+.stag-new   { background:#cce5ff; color:#004085; }
+.stag-seen    { background:#fff3cd; color:#856404; }
+.stag-pick { background:#d4edda; color:#155724; }
+.stag-no    { background:#f8d7da; color:#721c24; }
+.stag-def     { background:#eee;    color:#333;    }
 
 /* ── Table wrapper (my applications) ── */
-.table-wrapper {
+.tbl-wrap {
     background: white;
     border-radius: 8px;
     border: 1px solid #ddd;
     overflow: hidden;
 }
-.table-wrapper table { margin: 0; width: 100%; }
-.table-wrapper th { background: #f0f0f0; padding: 10px 14px; }
-.table-wrapper td { padding: 10px 14px; border-top: 1px solid #f0f0f0; }
-.table-wrapper tr:hover td { background: #fafafa; }
+.tbl-wrap table { margin: 0; width: 100%; }
+.tbl-wrap th { background: #f0f0f0; padding: 10px 14px; }
+.tbl-wrap td { padding: 10px 14px; border-top: 1px solid #f0f0f0; }
+.tbl-wrap tr:hover td { background: #fafafa; }
 
 /* ── Detail table (job detail) ── */
-.detail-table td { padding: 7px 14px; }
-.detail-table td:first-child { width: 130px; color: #555; }
+.dtable td { padding: 7px 14px; }
+.dtable td:first-child { width: 130px; color: #555; }
 
 /* ── Form groups ── */
-.form-group {
+.frow {
     margin-bottom: 16px;
 }
-.form-group label {
+.frow label {
     display: block;
     margin-bottom: 5px;
     font-size: 13px;
