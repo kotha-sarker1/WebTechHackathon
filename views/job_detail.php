@@ -1,7 +1,7 @@
 <?php
     require_once('../models/jobModel.php');
     session_start();
-    
+
     $role      = $_SESSION["role"]      ?? "";
     $user_id   = $_SESSION["user_id"]   ?? "";
     $name      = $_SESSION["name"]      ?? "";

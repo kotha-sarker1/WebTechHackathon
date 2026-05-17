@@ -3,19 +3,13 @@
     require_once('../models/jobModel.php');
     session_start();
 
-    $isLoggedIn = $_SESSION["isLoggedIn"] ?? false;
-    if(!$isLoggedIn){
-        header('location: ../views/login.php');
-        exit();
-    }
-
     $user_id = $_SESSION["user_id"] ?? "";
     $role    = $_SESSION["role"]    ?? "";
 
     if(isset($_REQUEST['action'])){
         $action = $_REQUEST['action'];
 
-        // SEARCH JOBS (AJAX) 
+        // SEARCH JOBS 
         if($action == "searchJobs"){
             $keyword = $_REQUEST['keyword'] ?? "";
 
@@ -31,7 +25,7 @@
 
             echo json_encode($jobs);
 
-        // FILTER JOBS (AJAX) 
+        //  FILTER JOBS 
         }else if($action == "filterJobs"){
             $category_id    = $_REQUEST['category_id']    ?? "";
             $job_type       = $_REQUEST['job_type']       ?? "";
@@ -46,16 +40,16 @@
 
             echo json_encode($jobs);
 
-        //  TOGGLE SAVE JOB (AJAX) 
+        // TOGGLE SAVE JOB 
         }else if($action == "toggleSaveJob"){
             $job_id = $_REQUEST['job_id'] ?? "";
 
             if($job_id == ""){
                 echo json_encode(['success' => false, 'message' => 'Job ID missing']);
             }else{
-                $alreadySaved = checkSavedJob($user_id, $job_id);
+                $already_saved = checkSavedJob($user_id, $job_id);
 
-                if($alreadySaved){
+                if($already_saved){
                     $result = unsaveJob($user_id, $job_id);
                     if($result){
                         echo json_encode(['success' => true, 'saved' => false]);
@@ -72,7 +66,7 @@
                 }
             }
 
-        //  APPLY FOR JOB 
+        // APPLY FOR JOB 
         }else if($action == "apply"){
             if($role != "seeker"){
                 header('location: ../views/job_board.php');
@@ -91,9 +85,9 @@
                 header("location: ../views/job_detail.php?id={$job_id}");
                 exit();
             }else{
-                $alreadyApplied = checkExistingApplication($job_id, $user_id);
+                $already_applied = checkExistingApplication($job_id, $user_id);
 
-                if($alreadyApplied){
+                if($already_applied){
                     $_SESSION["applyErr"] = "You have already applied for this job";
                     header("location: ../views/job_detail.php?id={$job_id}");
                     exit();
@@ -108,8 +102,8 @@
                         finfo_close($finfo);
 
                         if($mime == "application/pdf" && $file['size'] <= 2097152){
-                            $uploadDirectory = "../public/uploads/";
-                            $resume_path     = $uploadDirectory.time()."_".basename($file['name']);
+                            $upload_directory = "../public/uploads/";
+                            $resume_path      = $upload_directory.time()."_".basename($file['name']);
                             move_uploaded_file($file['tmp_name'], $resume_path);
                         }else{
                             $_SESSION["applyErr"] = "Resume must be a PDF file under 2MB";
@@ -132,7 +126,7 @@
                 }
             }
 
-        //  REMOVE SAVED JOB 
+        // REMOVE SAVED JOB
         }else if($action == "removeSaved"){
             $job_id = $_REQUEST['job_id'] ?? "";
 
