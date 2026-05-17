@@ -180,6 +180,39 @@ class DatabaseConnection{
 
     }
 
+    function getJobById($connection, $tableName, $id){
+
+    $sql = "SELECT * FROM $tableName WHERE id = $id";
+
+    $result = $connection->query($sql);
+
+    return $result;
+
+    }
+
+    function updateJob($connection, $tableName, $id, $category_id, $title, $description, $requirements, $salary_range, $location, $job_type, $deadline){
+
+    $sql = "UPDATE $tableName
+
+    SET
+
+    category_id = '$category_id',
+    title = '$title',
+    description = '$description',
+    requirements = '$requirements',
+    salary_range = '$salary_range',
+    location = '$location',
+    job_type = '$job_type',
+    deadline = '$deadline'
+
+    WHERE id = $id";
+
+    $result = $connection->query($sql);
+
+    return $result;
+
+    }
+
 }
 
 ?>

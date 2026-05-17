@@ -44,6 +44,12 @@ $jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
 
             <th>Category</th>
 
+            <th>Salary Range</th>
+
+            <th>Location</th>
+
+            <th>Job Type</th>
+
             <th>Deadline</th>
 
             <th>Application Count</th>
@@ -64,6 +70,12 @@ $jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
 
             $category = $row["category_name"];
 
+            $salary_range = $row["salary_range"];
+
+            $location = $row["location"];
+
+            $job_type = $row["job_type"];
+
             $deadline = $row["deadline"];
 
             $applicationCount = $row["total_applications"];
@@ -79,6 +91,12 @@ $jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
                 <td><?php echo $title; ?></td>
 
                 <td><?php echo $category; ?></td>
+
+                <td><?php echo $salary_range; ?></td>
+
+                <td><?php echo $location; ?></td>
+
+                <td><?php echo $job_type; ?></td>
 
                 <td><?php echo $deadline; ?></td>
 
@@ -122,6 +140,12 @@ $jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
 
                 <td>
 
+                    <a href="editJob.php?id=<?php echo $id; ?>">
+                        Edit 
+                    </a>
+                    
+                    <br><br>
+
                     <a href="../controllers/DeleteJob.php?id=<?php echo $id; ?>">
 
                         Delete
@@ -141,6 +165,7 @@ $jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
     </table>
 
     <script src="../config/toggleStatus.js"></script>
+
 
 </body>
 
