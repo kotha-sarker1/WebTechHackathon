@@ -158,6 +158,28 @@ class DatabaseConnection{
     return $newStatus;
     }
 
+    function getCategoryById($connection, $tableName, $id){
+
+    $sql = "SELECT * FROM $tableName WHERE id = $id";
+
+    $result = $connection->query($sql);
+
+    return $result;
+
+    }
+
+    function updateCategory($connection, $tableName, $id, $name){
+
+    $sql = "UPDATE $tableName
+    SET name = '$name'
+    WHERE id = $id";
+
+    $result = $connection->query($sql);
+
+    return $result;
+
+    }
+
 }
 
 ?>

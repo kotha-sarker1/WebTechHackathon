@@ -100,6 +100,12 @@ $categories = $db->getAllCategories($connection, "categories");
                 <td>$name</td>
 
                 <td>
+                    
+                    <a href='editCategory.php?id=$id'>
+                        Edit
+                    </a>
+
+                    |
 
                     <a href='../controllers/DeleteCategory.php?id=$id'>
                         Delete
