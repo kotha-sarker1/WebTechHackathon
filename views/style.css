@@ -1,284 +1,75 @@
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f2f5;
-}
+body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
 
-/* ── Navbar ── */
-.topnav {
-    background-color: #4a90e2;
-    padding: 12px 24px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
+/* NAV */
+.topnav { background: #2c3e50; padding: 12px 20px; display: flex; align-items: center; gap: 16px; }
+.topnav a { color: #fff; text-decoration: none; font-size: 14px; }
+.topnav a:hover { text-decoration: underline; }
+.greet-text { margin-left: auto; color: #aed6f1; font-size: 14px; }
 
-.topnav a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-}
+/* WRAPPER */
+.main-wrap { max-width: 900px; margin: 30px auto; padding: 0 16px; }
+.main-wrap h2 { margin-bottom: 20px; }
 
-.topnav a:hover {
-    text-decoration: underline;
-}
+/* INFO BOX */
+.info-box { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 16px; margin-bottom: 16px; }
+.box-title { font-weight: bold; font-size: 15px; margin-bottom: 12px; border-bottom: 1px solid #eee; padding-bottom: 6px; }
 
-.topnav .greet-text {
-    margin-left: auto;
-    color: white;
-    font-size: 14px;
-}
+/* FILTER BAR */
+.filter-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 10px; }
+.filter-bar label { font-size: 13px; }
+.filter-bar select, .filter-bar input { padding: 5px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; }
 
-/* ── Page wrapper ── */
-.main-wrap {
-    max-width: 860px;
-    margin: 30px auto;
-    padding: 0 16px;
-}
+/* JOB CARD */
+.jcard { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 14px; margin-bottom: 12px; }
+.jcard-head { display: flex; justify-content: space-between; align-items: flex-start; }
+.jcard-body h3 { font-size: 16px; margin-bottom: 4px; }
+.cname { font-size: 13px; color: #555; margin-bottom: 4px; }
+.jmeta { font-size: 12px; color: #777; }
+.jcard-foot { margin-top: 10px; }
 
-h2 {
-    color: #333;
-    margin-bottom: 18px;
-}
+/* BUTTONS & LINKS */
+.savebtn { background: none; border: none; font-size: 20px; cursor: pointer; }
+.viewlink { font-size: 13px; color: #2980b9; text-decoration: none; }
+.viewlink:hover { text-decoration: underline; }
+input[type="submit"] { background: #2c3e50; color: #fff; border: none; padding: 8px 20px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+input[type="submit"]:hover { background: #1a252f; }
+.go-back { font-size: 13px; color: #2980b9; text-decoration: none; display: inline-block; margin-bottom: 14px; }
 
-/* ── Section boxes (replaces fieldset/legend) ── */
-.info-box {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: white;
-    padding: 18px 20px 16px 20px;
-    margin-bottom: 20px;
-}
+/* TABLE */
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { padding: 10px 12px; border: 1px solid #ddd; font-size: 13px; text-align: left; }
+th { background: #2c3e50; color: #fff; }
 
-.box-title {
-    font-weight: bold;
-    font-size: 15px;
-    color: #333;
-    margin-bottom: 14px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #eee;
-}
+/* DETAIL TABLE */
+.dtable { width: 100%; border-collapse: collapse; }
+.dtable td { padding: 7px 10px; border-bottom: 1px solid #eee; font-size: 14px; }
+.dtable td:first-child { width: 140px; color: #555; }
 
-.filter-bar {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-}
+/* FORM */
+.frow { margin-bottom: 14px; }
+.frow label { display: block; font-size: 13px; margin-bottom: 4px; }
+.frow textarea, .frow input[type="text"], .frow input[type="file"] { width: 100%; padding: 7px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; }
 
-.filter-bar label {
-    font-size: 13px;
-    color: #555;
-    white-space: nowrap;
-}
+/* STATUS TAGS */
+.stag { padding: 3px 8px; border-radius: 10px; font-size: 12px; font-weight: bold; }
+.stag-new  { background: #d6eaf8; color: #1a5276; }
+.stag-seen { background: #fef9e7; color: #7d6608; }
+.stag-pick { background: #d5f5e3; color: #1e8449; }
+.stag-no   { background: #fadbd8; color: #922b21; }
+.stag-def  { background: #eee;    color: #555; }
 
-/* ── Job Cards ── */
-#listWrap {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
+/* MESSAGES */
+.ok-msg  { color: green; font-size: 14px; margin-bottom: 12px; }
+.err-msg { color: red;   font-size: 13px; }
 
-.jcard {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 18px 20px;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-    cursor: default;
-}
-
-.jcard:hover {
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    transform: translateY(-2px);
-}
-
-.jcard-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.jcard-body h3 {
-    margin: 0 0 4px 0;
-    font-size: 16px;
-    color: #222;
-}
-
-.jcard-body .cname {
-    font-size: 13px;
-    color: #555;
-    margin-bottom: 4px;
-}
-
-.jcard-body .jmeta {
-    font-size: 13px;
-    color: #777;
-}
-
-.savebtn {
-    font-size: 24px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0 0 0 10px;
-    line-height: 1;
-    transition: transform 0.15s ease;
-}
-
-.savebtn:hover {
-    transform: scale(1.25);
-}
-
-.jcard-foot {
-    margin-top: 14px;
-    text-align: center;
-}
-
-.viewlink {
-    display: inline-block;
-    background-color: #4a90e2;
-    color: white;
-    text-decoration: none;
-    padding: 8px 28px;
-    border-radius: 4px;
-    font-size: 13px;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
-}
-
-.viewlink:hover {
-    background-color: #357abd;
-    color: white;
-}
-
-/* ── Generic inputs ── */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-select,
-textarea {
-    padding: 6px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 13px;
-}
-
-input[type="submit"],
-input[type="button"],
-button[type="submit"] {
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-input[type="submit"]:hover,
-input[type="button"]:hover,
-button[type="submit"]:hover {
-    background-color: #357abd;
-}
-
-a {
-    color: #4a90e2;
-}
-
-p {
-    margin: 8px 0;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th {
-    background-color: #f0f0f0;
-    padding: 8px 12px;
-    text-align: left;
-}
-
-td {
-    padding: 7px 12px;
-}
-
-/* ── Back link ── */
-.go-back {
-    display: inline-block;
-    margin-bottom: 14px;
-    font-size: 13px;
-    color: #4a90e2;
-    text-decoration: none;
-}
-.go-back:hover { text-decoration: underline; }
-
-/* ── Messages ── */
-.ok-msg {
-    color: #155724;
-    background: #d4edda;
-    border: 1px solid #c3e6cb;
-    padding: 10px 14px;
-    border-radius: 4px;
-    margin-bottom: 14px;
-}
-.err-msg {
-    color: #721c24;
-    background: #f8d7da;
-    border: 1px solid #f5c6cb;
-    padding: 10px 14px;
-    border-radius: 4px;
-    margin-bottom: 14px;
-}
-
-/* ── Status badges ── */
-.stag {
-    display: inline-block;
-    padding: 3px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 600;
-}
-.stag-new   { background:#cce5ff; color:#004085; }
-.stag-seen    { background:#fff3cd; color:#856404; }
-.stag-pick { background:#d4edda; color:#155724; }
-.stag-no    { background:#f8d7da; color:#721c24; }
-.stag-def     { background:#eee;    color:#333;    }
-
-/* ── Table wrapper (my applications) ── */
-.tbl-wrap {
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    overflow: hidden;
-}
-.tbl-wrap table { margin: 0; width: 100%; }
-.tbl-wrap th { background: #f0f0f0; padding: 10px 14px; }
-.tbl-wrap td { padding: 10px 14px; border-top: 1px solid #f0f0f0; }
-.tbl-wrap tr:hover td { background: #fafafa; }
-
-/* ── Detail table (job detail) ── */
-.dtable td { padding: 7px 14px; }
-.dtable td:first-child { width: 130px; color: #555; }
-
-/* ── Form groups ── */
-.frow {
-    margin-bottom: 16px;
-}
-.frow label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #444;
-}
+/* LOGIN */
+.login-container { max-width: 400px; margin: 80px auto; padding: 30px; border: 1px solid #ccc; border-radius: 8px; background: #fff; }
+.login-container h2 { text-align: center; margin-bottom: 20px; }
+.login-container label { display: block; margin-bottom: 5px; font-size: 13px; font-weight: bold; }
+.login-container input[type="email"],
+.login-container input[type="password"] { width: 100%; padding: 8px; margin-bottom: 14px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; }
+.login-container input[type="submit"] { width: 100%; padding: 10px; }
+.error-msg { color: red; font-size: 13px; text-align: center; margin-bottom: 12px; }

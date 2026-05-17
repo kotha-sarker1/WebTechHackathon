@@ -1,20 +1,15 @@
 <?php
 
-    session_start();
-    require_once('../models/jobModel.php');
-
+session_start();    
+require_once('../models/jobModel.php');
+    
     $user_id = $_SESSION["user_id"] ?? "";
     $role    = $_SESSION["role"]    ?? "";
-
-    if($user_id == ""){
-        header('location: ../views/login.php');
-        exit();
-    }
 
     if(isset($_REQUEST['action'])){
         $action = $_REQUEST['action'];
 
-        // ─── SEARCH JOBS (AJAX) ──────────────────────────────
+        //  SEARCH JOBS 
         if($action == "searchJobs"){
             $keyword = $_REQUEST['keyword'] ?? "";
 
@@ -30,7 +25,7 @@
 
             echo json_encode($jobs);
 
-        // ─── FILTER JOBS (AJAX) ──────────────────────────────
+        // FILTER JOBS
         }else if($action == "filterJobs"){
             $category_id    = $_REQUEST['category_id']    ?? "";
             $job_type       = $_REQUEST['job_type']       ?? "";
@@ -45,7 +40,7 @@
 
             echo json_encode($jobs);
 
-        // ─── TOGGLE SAVE JOB (AJAX) ──────────────────────────
+        //   SAVE JOB 
         }else if($action == "toggleSaveJob"){
             $job_id = $_REQUEST['job_id'] ?? "";
 
@@ -71,7 +66,7 @@
                 }
             }
 
-        // ─── APPLY FOR JOB ───────────────────────────────────
+        // APPLY FOR JOB
         }else if($action == "apply"){
             if($role != "seeker"){
                 header('location: ../views/job_board.php');
@@ -131,7 +126,7 @@
                 }
             }
 
-        // ─── REMOVE SAVED JOB ────────────────────────────────
+        // REMOVE SAVED JOB 
         }else if($action == "removeSaved"){
             $job_id = $_REQUEST['job_id'] ?? "";
 

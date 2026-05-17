@@ -44,7 +44,7 @@
 
             <div>
                 <label>Search:&nbsp;</label>
-                <input type="text" id="searchKeyword" placeholder="Search by title, company..." onkeyup="searchJobs()" style="width:280px;">
+                <input type="text" id="searchKeyword" placeholder="Search by title/company" onkeyup="searchJobs()" style="width:280px;">
             </div>
 
             <div class="filter-bar">
@@ -65,10 +65,10 @@
                 </select>
 
                 <label>Location:</label>
-                <input type="text" id="filterLocation" placeholder="e.g. Dhaka" onkeyup="filterJobs()" style="width:130px;">
+                <input type="text" id="filterLocation" placeholder="City Name" onkeyup="filterJobs()" style="width:130px;">
 
                 <label>Salary:</label>
-                <input type="text" id="filterSalary" placeholder="e.g. 17000" onkeyup="filterJobs()" style="width:110px;">
+                <input type="text" id="filterSalary" placeholder="Salary" onkeyup="filterJobs()" style="width:110px;">
             </div>
         </div>
 
