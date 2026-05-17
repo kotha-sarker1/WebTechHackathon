@@ -1,8 +1,18 @@
+<?php
+    require_once('../models/jobModel.php');
+    session_start();
+
+    $role    = $_SESSION["role"]    ?? "";
+    $user_id = $_SESSION["user_id"] ?? "";
+    $name    = $_SESSION["name"]    ?? "";
+
+    $savedJobs = getSavedJobs($user_id);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Saved Jobs</title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
@@ -12,54 +22,46 @@
         <a href="my_applications.php">My Applications</a>
         <a href="profile_seeker.php">Profile</a>
         <a href="../controllers/logout.php">Logout</a>
-        <span class="nav-greeting">Hello, [User Name] (Seeker)</span>
+        <span class="nav-greeting">Hello, <?php echo htmlspecialchars($name); ?> (Seeker)</span>
     </div>
 
     <div class="page-wrapper">
 
         <h2>Saved Jobs</h2>
 
-        <div id="jobsContainer">
-            
+        <?php if(count($savedJobs) == 0){ ?>
+            <p>No saved jobs yet. <a href="job_board.php">Browse jobs</a></p>
+        <?php }else{ ?>
+            <div id="jobs_container">
+            <?php foreach($savedJobs as $job){ ?>
             <div class="job-card">
                 <div class="job-card-top">
                     <div class="job-card-info">
-                        <h3>Software Engineer</h3>
-                        <div class="company">Tech Company Ltd.</div>
+                        <h3><?php echo htmlspecialchars($job['title']); ?></h3>
+                        <div class="company"><?php echo htmlspecialchars($job['company_name']); ?></div>
                         <div class="meta">
-                            Dhaka | Full-time | Deadline: 2026-06-30
+                            <?php echo $job['location']; ?> &nbsp;|&nbsp;
+                            <?php echo $job['job_type']; ?> &nbsp;|&nbsp;
+                            Deadline: <?php echo $job['deadline']; ?>
                         </div>
                     </div>
-                    <button class="heart-btn" id="heartBtn_1" onclick="toggleSaveJob(1)" style="color:red;" title="Remove from saved">
+                    <button class="heart-btn"
+                        id="heart_btn_<?php echo $job['job_id']; ?>"
+                        onclick="toggleSaveJob(<?php echo $job['job_id']; ?>)"
+                        style="color:red;" title="Remove from saved">
                         &#9829;
                     </button>
                 </div>
                 <div class="job-card-footer">
-                    <a class="btn-view" href="job_detail.php?id=1">View & Apply</a>
+                    <a class="btn-view" href="job_detail.php?id=<?php echo $job['job_id']; ?>">View &amp; Apply</a>
                 </div>
             </div>
-
-            <div class="job-card">
-                <div class="job-card-top">
-                    <div class="job-card-info">
-                        <h3>UI/UX Designer</h3>
-                        <div class="company">Creative Agency</div>
-                        <div class="meta">
-                            Remote | Part-time | Deadline: 2026-06-15
-                        </div>
-                    </div>
-                    <button class="heart-btn" id="heartBtn_2" onclick="toggleSaveJob(2)" style="color:red;" title="Remove from saved">
-                        &#9829;
-                    </button>
-                </div>
-                <div class="job-card-footer">
-                    <a class="btn-view" href="job_detail.php?id=2">View & Apply</a>
-                </div>
+            <?php } ?>
             </div>
-
-        </div>
+        <?php } ?>
 
     </div>
 
+    <script src="../config/script.js"></script>
 </body>
 </html>
