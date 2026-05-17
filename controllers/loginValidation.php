@@ -26,7 +26,7 @@ if(isset($_POST['login'])){
             exit();
 
         } else {
-            $_SESSION["err"] = "wrong password";git push origin feature/task1-auth
+            $_SESSION["err"] = "wrong password";
             header("Location: ../views/login.php");
             exit();
         }
