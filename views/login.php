@@ -26,7 +26,7 @@
                 $user = mysqli_fetch_assoc($result);
 
                 if(password_verify($password, $user['password_hash'])){
-                    $_SESSION["isLoggedIn"] = true;
+                    
                     $_SESSION["user_id"]    = $user['id'];
                     $_SESSION["name"]       = $user['name'];
                     $_SESSION["role"]       = $user['role'];

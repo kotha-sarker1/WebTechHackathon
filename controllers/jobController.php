@@ -1,16 +1,15 @@
 <?php
 
-    require_once('../models/jobModel.php');
     session_start();
-
-    $isLoggedIn = $_SESSION["isLoggedIn"] ?? false;
-    if(!$isLoggedIn){
-        header('location: ../views/login.php');
-        exit();
-    }
+    require_once('../models/jobModel.php');
 
     $user_id = $_SESSION["user_id"] ?? "";
     $role    = $_SESSION["role"]    ?? "";
+
+    if($user_id == ""){
+        header('location: ../views/login.php');
+        exit();
+    }
 
     if(isset($_REQUEST['action'])){
         $action = $_REQUEST['action'];

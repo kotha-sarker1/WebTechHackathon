@@ -1,10 +1,7 @@
 <?php
-    require_once('../models/jobModel.php');
     session_start();
-
-    $isLoggedIn = $_SESSION["isLoggedIn"] ?? false;
-    if(!$isLoggedIn){ header('location: login.php'); exit(); }
-
+    require_once('../models/jobModel.php');
+    
     $role      = $_SESSION["role"]      ?? "";
     $user_id   = $_SESSION["user_id"]   ?? "";
     $name      = $_SESSION["name"]      ?? "";

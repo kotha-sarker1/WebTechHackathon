@@ -66,7 +66,7 @@ function renderJobCards(jobs){
         html += "<div class='jcard-head'>";
         html += "<div class='jcard-body'>";
         html += "<h3>" + escapeHtml(job.title) + "</h3>";
-        html += "<div class='cname'>" + escapeHtml(job.cname_name) + "</div>";
+        html += "<div class='cname'>" + escapeHtml(job.company_name) + "</div>";
         html += "<div class='jmeta'>" + escapeHtml(job.category_name) + " &nbsp;|&nbsp; " + escapeHtml(job.location) + " &nbsp;|&nbsp; " + escapeHtml(job.job_type) + "<br>Salary: " + escapeHtml(job.salary_range) + " &nbsp;|&nbsp; Deadline: " + escapeHtml(job.deadline) + "</div>";
         html += "</div>";
         html += "<button class='savebtn' id='sbtn_" + job.id + "' onclick='toggleSaveJob(" + job.id + ")' style='color:" + heartColor + ";'>" + heartIcon + "</button>";
