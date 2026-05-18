@@ -1,0 +1,75 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { font-family: Arial, sans-serif; background: #f4f4f4; color: #333; }
+
+/* NAV */
+.topnav { background: #2c3e50; padding: 12px 20px; display: flex; align-items: center; gap: 16px; }
+.topnav a { color: #fff; text-decoration: none; font-size: 14px; }
+.topnav a:hover { text-decoration: underline; }
+.greet-text { margin-left: auto; color: #aed6f1; font-size: 14px; }
+
+/* WRAPPER */
+.main-wrap { max-width: 900px; margin: 30px auto; padding: 0 16px; }
+.main-wrap h2 { margin-bottom: 20px; }
+
+/* INFO BOX */
+.info-box { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 16px; margin-bottom: 16px; }
+.box-title { font-weight: bold; font-size: 15px; margin-bottom: 12px; border-bottom: 1px solid #eee; padding-bottom: 6px; }
+
+/* FILTER BAR */
+.filter-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 10px; }
+.filter-bar label { font-size: 13px; }
+.filter-bar select, .filter-bar input { padding: 5px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; }
+
+/* JOB CARD */
+.jcard { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 14px; margin-bottom: 12px; }
+.jcard-head { display: flex; justify-content: space-between; align-items: flex-start; }
+.jcard-body h3 { font-size: 16px; margin-bottom: 4px; }
+.cname { font-size: 13px; color: #555; margin-bottom: 4px; }
+.jmeta { font-size: 12px; color: #777; }
+.jcard-foot { margin-top: 10px; }
+
+/* BUTTONS & LINKS */
+.savebtn { background: none; border: none; font-size: 20px; cursor: pointer; }
+.viewlink { font-size: 13px; color: #2980b9; text-decoration: none; }
+.viewlink:hover { text-decoration: underline; }
+input[type="submit"] { background: #2c3e50; color: #fff; border: none; padding: 8px 20px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+input[type="submit"]:hover { background: #1a252f; }
+.go-back { font-size: 13px; color: #2980b9; text-decoration: none; display: inline-block; margin-bottom: 14px; }
+
+/* TABLE */
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { padding: 10px 12px; border: 1px solid #ddd; font-size: 13px; text-align: left; }
+th { background: #2c3e50; color: #fff; }
+
+/* DETAIL TABLE */
+.dtable { width: 100%; border-collapse: collapse; }
+.dtable td { padding: 7px 10px; border-bottom: 1px solid #eee; font-size: 14px; }
+.dtable td:first-child { width: 140px; color: #555; }
+
+/* FORM */
+.frow { margin-bottom: 14px; }
+.frow label { display: block; font-size: 13px; margin-bottom: 4px; }
+.frow textarea, .frow input[type="text"], .frow input[type="file"] { width: 100%; padding: 7px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; }
+
+/* STATUS TAGS */
+.stag { padding: 3px 8px; border-radius: 10px; font-size: 12px; font-weight: bold; }
+.stag-new  { background: #d6eaf8; color: #1a5276; }
+.stag-seen { background: #fef9e7; color: #7d6608; }
+.stag-pick { background: #d5f5e3; color: #1e8449; }
+.stag-no   { background: #fadbd8; color: #922b21; }
+.stag-def  { background: #eee;    color: #555; }
+
+/* MESSAGES */
+.ok-msg  { color: green; font-size: 14px; margin-bottom: 12px; }
+.err-msg { color: red;   font-size: 13px; }
+
+/* LOGIN */
+.login-container { max-width: 400px; margin: 80px auto; padding: 30px; border: 1px solid #ccc; border-radius: 8px; background: #fff; }
+.login-container h2 { text-align: center; margin-bottom: 20px; }
+.login-container label { display: block; margin-bottom: 5px; font-size: 13px; font-weight: bold; }
+.login-container input[type="email"],
+.login-container input[type="password"] { width: 100%; padding: 8px; margin-bottom: 14px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; }
+.login-container input[type="submit"] { width: 100%; padding: 10px; }
+.error-msg { color: red; font-size: 13px; text-align: center; margin-bottom: 12px; }
