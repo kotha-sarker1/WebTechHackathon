@@ -6,4 +6,9 @@ if (!$conn) {
     die("Database Connection Failed");
 }
 
+function getConnection(){
+    global $conn;
+    return $conn;
+}
+
 ?>

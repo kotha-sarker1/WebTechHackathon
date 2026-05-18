@@ -160,11 +160,11 @@ if(isset($_GET['job_id']))
         }
 
     </style>
-
 </head>
 
 <body>
 
+<<<<<<< HEAD
     <h2>Employer Dashboard</h2>
 
     <form method="GET">
@@ -190,6 +190,10 @@ if(isset($_GET['job_id']))
         </button>
 
     </form>
+=======
+    <h1 class="main-heading">Employer Dashboard</h1>
+
+>>>>>>> 5266c167c191df252930c576066570562e31d151
 
     <br><br>
 
@@ -360,7 +364,23 @@ new Chart(ctx,
     }
 });
 
+<<<<<<< HEAD
 <?php } ?>
+=======
+        ?>
+
+    </table>
+
+    <br><br>
+
+    <a href="createJob.php">
+
+        Create New Job
+
+    </a>
+
+    <script src="../config/toggleStatus.js"></script>
+>>>>>>> 5266c167c191df252930c576066570562e31d151
 
 </script>
 
