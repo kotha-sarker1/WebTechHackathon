@@ -1,6 +1,6 @@
 <?php
 
-require_once '../models/AdminModel.php';
+require_once '../models/AdminPanelModel.php';
 
 if(isset($_GET['id']))
 {

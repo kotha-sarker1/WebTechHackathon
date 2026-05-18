@@ -10,12 +10,14 @@ function getAllJobsAdmin($category = '', $status = '')
 
     if($category != '')
     {
-        $query .= " AND category = '$category'";
+        $cat = mysqli_real_escape_string($conn, $category);
+        $query .= " AND category = '$cat'";
     }
 
     if($status != '')
     {
-        $query .= " AND status = '$status'";
+        $st = mysqli_real_escape_string($conn, $status);
+        $query .= " AND status = '$st'";
     }
 
     $result = mysqli_query($conn, $query);
@@ -72,9 +74,11 @@ function closeJob($id)
 {
     global $conn;
 
+    $id = (int) $id;
+
     $query = "UPDATE jobs
               SET status = 'closed'
-              WHERE id = '$id'";
+              WHERE id = $id";
 
     mysqli_query($conn, $query);
 }
