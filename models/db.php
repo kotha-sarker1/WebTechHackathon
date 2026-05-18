@@ -1,18 +1,14 @@
 <?php
 
-    $host   = "127.0.0.1";
-    $dbuser = "root";
-    $dbpass = "";
-    $dbname = "job_portal_db";
+$conn = mysqli_connect("localhost", "root", "", "job_portal");
 
-    function getConnection(){
-        global $host;
-        global $dbuser;
-        global $dbpass;
-        global $dbname;
+if (!$conn) {
+    die("Database Connection Failed");
+}
 
-        $con = mysqli_connect($host, $dbuser, $dbpass, $dbname);
-        return $con;
-    }
+function getConnection(){
+    global $conn;
+    return $conn;
+}
 
 ?>

@@ -1,160 +1,372 @@
 <?php
 
-include "../models/DatabaseConnection.php";
+require_once '../models/JobModel.php';
+require_once '../models/ApplicationModel.php';
 
-session_start();
+$jobs = getAllJobs();
 
-$db = new DatabaseConnection();
+$statusData = getApplicationStatusCount();
 
-$connection = $db->openConnection();
+$submitted = 0;
+$reviewed = 0;
+$rejected = 0;
 
-$employer_id = 1;
+while($statusRow = mysqli_fetch_assoc($statusData))
+{
+    if($statusRow['status'] == 'Submitted')
+    {
+        $submitted = $statusRow['total'];
+    }
 
-$jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
+    else if($statusRow['status'] == 'Reviewed')
+    {
+        $reviewed = $statusRow['total'];
+    }
+
+    else if($statusRow['status'] == 'Rejected')
+    {
+        $rejected = $statusRow['total'];
+    }
+}
+
+$applications = null;
+
+$job_id = "";
+
+if(isset($_GET['job_id']))
+{
+    $job_id = $_GET['job_id'];
+
+    $applications = getApplicationsByJob($job_id);
+}
 
 ?>
 
+<!DOCTYPE html>
 <html>
 
 <head>
 
     <title>Employer Dashboard</title>
-    <link rel="stylesheet" href="../config/style2.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        body
+        {
+            font-family: Arial, sans-serif;
+
+            background-color: #f4f4f4;
+
+            margin: 30px;
+        }
+
+        h2
+        {
+            color: #333;
+        }
+
+        h3
+        {
+            color: #333;
+        }
+
+        table
+        {
+            border-collapse: collapse;
+
+            width: 80%;
+
+            background-color: white;
+
+            margin-top: 20px;
+        }
+
+        th
+        {
+            background-color: #007bff;
+
+            color: white;
+        }
+
+        th,
+        td
+        {
+            border: 1px solid #ccc;
+
+            padding: 12px;
+
+            text-align: center;
+        }
+
+        button
+        {
+            background-color: #007bff;
+
+            color: white;
+
+            border: none;
+
+            padding: 8px 15px;
+
+            cursor: pointer;
+
+            border-radius: 4px;
+        }
+
+        button:hover
+        {
+            background-color: #0056b3;
+        }
+
+        select
+        {
+            padding: 5px;
+        }
+
+        a
+        {
+            text-decoration: none;
+
+            color: #007bff;
+        }
+
+        a:hover
+        {
+            text-decoration: underline;
+        }
+
+        .chart-box
+        {
+            width: 80%;
+
+            background-color: white;
+
+            padding: 20px;
+
+            margin-top: 30px;
+
+            border: 1px solid #ccc;
+        }
+
+        .headline
+        {
+            color: #666;
+
+            font-size: 14px;
+
+            margin-top: 5px;
+        }
+
+    </style>
 </head>
 
 <body>
 
+<<<<<<< HEAD
+    <h2>Employer Dashboard</h2>
+
+    <form method="GET">
+
+        <label>Select Job:</label>
+
+        <select name="job_id">
+
+            <?php while($job = mysqli_fetch_assoc($jobs)) { ?>
+
+                <option value="<?php echo $job['id']; ?>">
+
+                    <?php echo $job['title']; ?>
+
+                </option>
+
+            <?php } ?>
+
+        </select>
+
+        <button type="submit">
+            Show Applications
+        </button>
+
+    </form>
+=======
     <h1 class="main-heading">Employer Dashboard</h1>
 
+>>>>>>> 5266c167c191df252930c576066570562e31d151
 
     <br><br>
 
-    <table border="1" cellpadding="10">
+    <?php if(isset($_GET['job_id']) && $applications != null) { ?>
 
-        <tr>
-
-            <th>ID</th>
-
-            <th>Title</th>
-
-            <th>Category</th>
-
-            <th>Salary Range</th>
-
-            <th>Location</th>
-
-            <th>Job Type</th>
-
-            <th>Deadline</th>
-
-            <th>Application Count</th>
-
-            <th>Status</th>
-
-            <th>Action</th>
-
-        </tr>
-
-        <?php
-
-        while($row = $jobs->fetch_assoc()){
-
-            $id = $row["id"];
-
-            $title = $row["title"];
-
-            $category = $row["category_name"];
-
-            $salary_range = $row["salary_range"];
-
-            $location = $row["location"];
-
-            $job_type = $row["job_type"];
-
-            $deadline = $row["deadline"];
-
-            $applicationCount = $row["total_applications"];
-
-            $status = $row["status"];
-
-            ?>
+        <table>
 
             <tr>
-
-                <td><?php echo $id; ?></td>
-
-                <td><?php echo $title; ?></td>
-
-                <td><?php echo $category; ?></td>
-
-                <td><?php echo $salary_range; ?></td>
-
-                <td><?php echo $location; ?></td>
-
-                <td><?php echo $job_type; ?></td>
-
-                <td><?php echo $deadline; ?></td>
-
-                <td><?php echo $applicationCount; ?></td>
-
-                <td>
-
-                    <button
-
-                    id="statusBtn<?php echo $id; ?>"
-
-                    onclick="toggleStatus(<?php echo $id; ?>)"
-
-                    style="color:white;
-
-                    background-color:
-
-                    <?php
-
-                    if($status == "active"){
-
-                        echo "green";
-
-                    }else{
-
-                        echo "red";
-
-                    }
-
-                    ?>
-
-                    ;"
-
-                    >
-
-                    <?php echo $status; ?>
-
-                    </button>
-
-                </td>
-
-                <td>
-
-                    <a href="editJob.php?id=<?php echo $id; ?>">
-                        Edit 
-                    </a>
-                    
-                    <br><br>
-
-                    <a href="../controllers/DeleteJob.php?id=<?php echo $id; ?>">
-
-                        Delete
-
-                    </a>
-
-                </td>
-
+                <th>Seeker Name</th>
+                <th>Headline</th>
+                <th>Cover Letter</th>
+                <th>Resume</th>
+                <th>Status</th>
             </tr>
 
-            <?php
+            <?php while($row = mysqli_fetch_assoc($applications)) { ?>
 
+                <tr>
+
+                    <td>
+                        <?php echo $row['name']; ?>
+                    </td>
+
+                    <td>
+
+                        <div class="headline">
+
+                            <?php echo $row['headline']; ?>
+
+                        </div>
+
+                    </td>
+
+                    <td>
+                        <?php echo $row['cover_letter']; ?>
+                    </td>
+
+                    <td>
+
+                        <a href="../<?php echo $row['resume_path']; ?>"
+                        target="_blank">
+
+                            Download Resume
+
+                        </a>
+
+                    </td>
+
+                    <td>
+
+                        <form method="POST">
+
+                            <input type="hidden"
+                            name="application_id"
+                            value="<?php echo $row['id']; ?>">
+
+                            <input type="hidden"
+                            name="job_id"
+                            value="<?php echo $job_id; ?>">
+
+                            <select name="status"
+                            onchange="updateStatus(this)"
+                            style="width: 140px; height: 35px;">
+
+                                <option value="Submitted"
+                                <?php if($row['status'] == 'Submitted') echo 'selected'; ?>>
+
+                                    Submitted
+
+                                </option>
+
+                                <option value="Reviewed"
+                                <?php if($row['status'] == 'Reviewed') echo 'selected'; ?>>
+
+                                    Reviewed
+
+                                </option>
+
+                                <option value="Rejected"
+                                <?php if($row['status'] == 'Rejected') echo 'selected'; ?>>
+
+                                    Rejected
+
+                                </option>
+
+                            </select>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+            <?php } ?>
+
+        </table>
+
+        <div class="chart-box">
+
+            <h3>Application Status Report</h3>
+
+            <canvas id="statusChart"></canvas>
+
+        </div>
+
+    <?php } ?>
+
+<script>
+
+function updateStatus(selectElement)
+{
+    let form = selectElement.parentElement;
+
+    let formData = new FormData(form);
+
+    fetch("../controllers/updateStatus.php",
+    {
+        method: "POST",
+        body: formData
+    })
+
+    .then(response => response.text())
+
+    .then(data =>
+    {
+        alert("Status Updated Successfully");
+    });
+}
+
+<?php if(isset($_GET['job_id'])) { ?>
+
+const ctx = document.getElementById('statusChart');
+
+new Chart(ctx,
+{
+    type: 'bar',
+
+    data:
+    {
+        labels: ['Submitted', 'Reviewed', 'Rejected'],
+
+        datasets:
+        [{
+            label: 'Applications',
+
+            data:
+            [
+                <?php echo $submitted; ?>,
+                <?php echo $reviewed; ?>,
+                <?php echo $rejected; ?>
+            ],
+
+            borderWidth: 1
+        }]
+    },
+
+    options:
+    {
+        responsive: true,
+
+        scales:
+        {
+            y:
+            {
+                beginAtZero: true
+            }
         }
+    }
+});
 
+<<<<<<< HEAD
+<?php } ?>
+=======
         ?>
 
     </table>
@@ -168,8 +380,9 @@ $jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
     </a>
 
     <script src="../config/toggleStatus.js"></script>
+>>>>>>> 5266c167c191df252930c576066570562e31d151
 
+</script>
 
 </body>
-
 </html>

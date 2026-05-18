@@ -1,8 +1,5 @@
 <?php
 
-class DatabaseConnection{
-
-    function openConnection(){
 class DatabaseConnection {
 
     function openConnection() {
