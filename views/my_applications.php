@@ -26,7 +26,7 @@
         <a href="job_board.php">Job Board</a>
         <a href="saved_jobs.php">Saved Jobs</a>
         <a href="my_applications.php">My Applications</a>
-        <a href="profile_seeker.php">Profile</a>
+        <a href="profile.php">Profile</a>
         <a href="../controllers/logout.php">Logout</a>
         <span class="greet-text">Hello, <?php echo htmlspecialchars($name); ?> (Seeker)</span>
     </div>
