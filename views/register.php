@@ -22,26 +22,26 @@ unset($_SESSION["err"]);
 
         <div>
             <label>Name</label>
-            <input type="text" name="name" required>
+            <input type="text" name="name" >
         </div>
 
         <div>
             <label>Email</label>
-            <input type="email" name="email" required>
+            <input type="email" name="email" >
         </div>
 
         <div>
             <label>Password (min 8 characters)</label>
-            <input type="password" name="password" required>
+            <input type="password" name="password" >
         </div>
 
         <div>
             <label>Role</label>
             <div class="radio-group">
-                <input type="radio" name="role" value="employer" required>
+                <input type="radio" name="role" value="employer" >
                 <label>Employer</label>
 
-                <input type="radio" name="role" value="seeker" required>
+                <input type="radio" name="role" value="seeker" >
                 <label>Job Seeker</label>
             </div>
         </div>

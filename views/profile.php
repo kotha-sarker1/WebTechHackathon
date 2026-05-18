@@ -29,12 +29,12 @@ $role = $_SESSION['role'];
 
             <div>
                 <label>Company Name</label>
-                <input type="text" name="company" required>
+                <input type="text" name="company" >
             </div>
 
             <div>
                 <label>Industry</label>
-                <select name="industry" required>
+                <select name="industry" >
                     <option value="">-- Select Industry --</option>
                     <option value="Technology">Technology</option>
                     <option value="Finance">Finance</option>
@@ -66,12 +66,12 @@ $role = $_SESSION['role'];
 
             <div>
                 <label>Skills (comma-separated)</label>
-                <textarea name="skills" placeholder="e.g. PHP, Java, Python" required></textarea>
+                <textarea name="skills" placeholder="e.g. PHP, Java, Python"></textarea>
             </div>
 
             <div>
                 <label>Years of Experience</label>
-                <input type="number" name="experience" min="0" required>
+                <input type="number" name="experience" min="0" >
             </div>
 
         <?php endif; ?>
