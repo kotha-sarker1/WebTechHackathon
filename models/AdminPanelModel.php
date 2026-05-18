@@ -6,21 +6,22 @@ function getAllJobsAdmin($category = '', $status = '')
 {
     global $conn;
 
-    $query = "SELECT * FROM jobs WHERE 1";
-
-    if($category != '')
-    {
-        $cat = mysqli_real_escape_string($conn, $category);
-        $query .= " AND category = '$cat'";
+    if ($category !== '' && $status !== '') {
+        $stmt = mysqli_prepare($conn, "SELECT * FROM jobs WHERE category = ? AND status = ?");
+        mysqli_stmt_bind_param($stmt, "ss", $category, $status);
+    } elseif ($category !== '') {
+        $stmt = mysqli_prepare($conn, "SELECT * FROM jobs WHERE category = ?");
+        mysqli_stmt_bind_param($stmt, "s", $category);
+    } elseif ($status !== '') {
+        $stmt = mysqli_prepare($conn, "SELECT * FROM jobs WHERE status = ?");
+        mysqli_stmt_bind_param($stmt, "s", $status);
+    } else {
+        $stmt = mysqli_prepare($conn, "SELECT * FROM jobs");
     }
 
-    if($status != '')
-    {
-        $st = mysqli_real_escape_string($conn, $status);
-        $query .= " AND status = '$st'";
-    }
+    mysqli_stmt_execute($stmt);
 
-    $result = mysqli_query($conn, $query);
+    $result = mysqli_stmt_get_result($stmt);
 
     return $result;
 }
@@ -29,10 +30,9 @@ function getTotalJobs()
 {
     global $conn;
 
-    $query = "SELECT COUNT(*) as total FROM jobs";
-
-    $result = mysqli_query($conn, $query);
-
+    $stmt = mysqli_prepare($conn, "SELECT COUNT(*) as total FROM jobs");
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
     $row = mysqli_fetch_assoc($result);
 
     return $row['total'];
@@ -42,10 +42,9 @@ function getTotalApplications()
 {
     global $conn;
 
-    $query = "SELECT COUNT(*) as total FROM applications";
-
-    $result = mysqli_query($conn, $query);
-
+    $stmt = mysqli_prepare($conn, "SELECT COUNT(*) as total FROM applications");
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
     $row = mysqli_fetch_assoc($result);
 
     return $row['total'];
@@ -65,7 +64,9 @@ function getApplicationsPerCategory()
 
               GROUP BY jobs.category";
 
-    $result = mysqli_query($conn, $query);
+    $stmt = mysqli_prepare($conn, $query);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
     return $result;
 }
@@ -73,14 +74,10 @@ function getApplicationsPerCategory()
 function closeJob($id)
 {
     global $conn;
-
+    $stmt = mysqli_prepare($conn, "UPDATE jobs SET status = 'closed' WHERE id = ?");
     $id = (int) $id;
-
-    $query = "UPDATE jobs
-              SET status = 'closed'
-              WHERE id = $id";
-
-    mysqli_query($conn, $query);
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
 }
 
 ?>
