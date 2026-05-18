@@ -17,10 +17,7 @@ $isIncomplete = $db->checkProfileIncomplete(
 );
 
 
-if ($isIncomplete) {
-    header("Location: profile.php");
-    exit();
-}
+
 ?>
 
 <!DOCTYPE html>
