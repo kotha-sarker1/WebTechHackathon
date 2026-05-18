@@ -67,6 +67,20 @@ textarea{
     box-sizing: border-box;
 }
 
+a{
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+
+    background-color: #8a2be2;
+    color: white;
+
+    padding: 10px;
+    border-radius: 8px;
+
+    text-decoration: none;
+    text-align: center;
+}
 
 input:focus,
 textarea:focus,

@@ -92,7 +92,7 @@ $categories = $db->getAllCategories($connection, "categories");
 
                 <td>
 
-                    <textarea name="description" required></textarea>
+                    <textarea name="description" ></textarea>
 
                 </td>
 
@@ -104,7 +104,7 @@ $categories = $db->getAllCategories($connection, "categories");
 
                 <td>
 
-                    <textarea name="requirements" required></textarea>
+                    <textarea name="requirements" ></textarea>
 
                 </td>
 
