@@ -31,12 +31,12 @@ unset($_SESSION["categoryErr"]);
 <head>
 
     <title>Edit Category</title>
-
+    <link rel="stylesheet" href="../config/style2.css">
 </head>
 
 <body>
-
-    <h1>Edit Category</h1>
+<div class="form-container">
+    <h1 class="main-heading">Edit Category</h1>
 
     <form method="post" action="../controllers/EditCategory.php">
 
@@ -85,6 +85,7 @@ unset($_SESSION["categoryErr"]);
         </table>
 
     </form>
+</div>
 
 </body>
 

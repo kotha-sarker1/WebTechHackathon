@@ -1,10 +1,10 @@
-/* PAGE BACKGROUND */
+
 body{
     background-color: #e7eae0;
     font-family: Arial, sans-serif;
 }
 
-/* FORM BOX */
+
 .form-container{
     width: 600px;
     margin: 50px auto;
@@ -19,7 +19,7 @@ body{
     border: 1px solid #ddd;
 }
 
-/* HEADING */
+
 .main-heading{
     text-align: center;
     color: #0f2593;
@@ -58,7 +58,7 @@ table.all-catagory td {
 
 
 
-/* INPUT FIELDS */
+
 input[type="text"],
 input[type="date"],
 input[type="password"],
@@ -81,7 +81,7 @@ textarea{
     box-sizing: border-box;
 }
 
-/* INPUT FOCUS EFFECT */
+
 input:focus,
 textarea:focus,
 select:focus{
@@ -91,18 +91,18 @@ select:focus{
     box-shadow: 0px 0px 5px #2be293;
 }
 
-/* TEXTAREA */
+
 textarea{
     height: 50px;
     resize: none;
 }
 
-/* BUTTON */
+
 input[type="submit"]{
 
     width: 100%;
 
-    background-color: #2be293;
+    background-color: #217e0e;
 
     color: white;
 
@@ -117,24 +117,17 @@ input[type="submit"]{
     cursor: pointer;
 }
 
-/* BUTTON HOVER */
+
 input[type="submit"]:hover{
-    background-color: #76dc8c;
+    background-color: #166f29;
 }
 
-/* LABEL STYLE */
-td:first-child{
-    font-weight: bold;
-    color: #333;
-}
-
-/* ERROR */
 .error{
     color: red;
     font-size: 14px;
 }
 
-/* SUCCESS */
+
 .success{
     color: green;
     text-align: center;

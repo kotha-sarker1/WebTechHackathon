@@ -19,18 +19,13 @@ $jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
 <head>
 
     <title>Employer Dashboard</title>
-
+    <link rel="stylesheet" href="../config/style2.css">
 </head>
 
 <body>
 
-    <h1 style="color:Blue">Employer Dashboard</h1>
+    <h1 class="main-heading">Employer Dashboard</h1>
 
-    <a href="createJob.php">
-
-        Create New Job
-
-    </a>
 
     <br><br>
 
@@ -163,6 +158,14 @@ $jobs = $db->getEmployerJobsWithApplicationCount($connection, $employer_id);
         ?>
 
     </table>
+
+    <br><br>
+
+    <a href="createJob.php">
+
+        Create New Job
+
+    </a>
 
     <script src="../config/toggleStatus.js"></script>
 
