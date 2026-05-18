@@ -144,7 +144,7 @@
             return false;
         }
 
-        $sql    = "select * from saved_jobs where user_id = '{$user_id}' and job_id = '{$job_id}'";
+        $sql = "select * from saved_jobs where user_id = '{$user_id}' and job_id = '{$job_id}'";
         $result = mysqli_query($con, $sql);
 
         mysqli_close($con);
