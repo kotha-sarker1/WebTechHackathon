@@ -1,5 +1,6 @@
-<?php 
+<?php
 session_start();
+
 $err = $_SESSION["err"] ?? "";
 unset($_SESSION["err"]);
 ?>
@@ -9,6 +10,7 @@ unset($_SESSION["err"]);
 <head>
     <meta charset="UTF-8">
     <title>Register - Job Portal</title>
+    <link rel="stylesheet" href="../public/css/style.css">
 </head>
 <body>
 
@@ -18,54 +20,50 @@ unset($_SESSION["err"]);
 
     <form method="post" action="../controllers/RegistrationValidation.php" enctype="multipart/form-data">
 
-   
         <div>
-            <label>Name</label><br>
+            <label>Name</label>
             <input type="text" name="name" required>
         </div>
 
-        <br>
-
-        
         <div>
-            <label>Email</label><br>
+            <label>Email</label>
             <input type="email" name="email" required>
         </div>
 
-        <br>
-
-        
         <div>
-            <label>Password</label><br>
+            <label>Password (min 8 characters)</label>
             <input type="password" name="password" required>
         </div>
 
-        <br>
-
-        
         <div>
-            <label>Role</label><br>
+            <label>Role</label>
+            <div class="radio-group">
+                <input type="radio" name="role" value="employer" required>
+                <label>Employer</label>
 
-            <input type="radio" name="role" value="employer" required> Employer
-            <input type="radio" name="role" value="seeker" required> Seeker
+                <input type="radio" name="role" value="seeker" required>
+                <label>Job Seeker</label>
+            </div>
         </div>
 
-        <br>
-
         <div>
-            <label>Upload File (Logo / Resume)</label><br>
+            <label>Upload File (Logo for Employer / Resume for Job Seeker)</label>
             <input type="file" name="fileupload" accept=".jpg,.png,.pdf">
+            <small>Max file size: 2 MB. Allowed: JPG, PNG, PDF</small>
         </div>
 
-        <br>
-
-        <?php if(!empty($err)) { ?>
-            <p style="color:red;"><?php echo $err; ?></p>
+        <?php if (!empty($err)) { ?>
+            <p class="error-msg"><?php echo $err; ?></p>
         <?php } ?>
 
         <button type="submit" name="register">Register</button>
 
     </form>
+
+    <p class="page-link">
+        Already have an account?
+        <a href="login.php">Login here</a>
+    </p>
 
 </div>
 
