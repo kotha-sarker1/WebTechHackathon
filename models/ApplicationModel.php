@@ -8,6 +8,7 @@ function getApplicationsByJob($job_id)
 
     $query = "SELECT applications.id,
                      users.name,
+                     seeker_profiles.headline,
                      applications.cover_letter,
                      applications.status,
                      applications.resume_path
@@ -16,6 +17,9 @@ function getApplicationsByJob($job_id)
 
               JOIN users
               ON applications.seeker_id = users.id
+
+              LEFT JOIN seeker_profiles
+              ON users.id = seeker_profiles.user_id
 
               WHERE applications.job_id = '$job_id'";
 
